@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'Bib.dart';
+import 'nieuwe_bib.dart';
 
 class Bibs extends StatefulWidget {
   @override
@@ -14,7 +15,11 @@ class _BibsState extends State<Bibs> {
       body: Bib(),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.amber,
-        child: Icon(Icons.add),
+        child: Hero(tag: 'plus', child: Icon(Icons.add)),
+        onPressed: () {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => NieuweBib()));
+        },
       ),
     );
   }
