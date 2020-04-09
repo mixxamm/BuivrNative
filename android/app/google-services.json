@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "993590564301",
+    "firebase_url": "https://buivr-7e4fc.firebaseio.com",
+    "project_id": "buivr-7e4fc",
+    "storage_bucket": "buivr-7e4fc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:993590564301:android:682493828a422dd8d2a084",
+        "android_client_info": {
+          "package_name": "ml.buivr.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "993590564301-3hvb25u05rconrnh8qh2c6fohq7lbguh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDR18SCsh3nRfs3QBb7ddWqo5BUwL43uSs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "993590564301-3hvb25u05rconrnh8qh2c6fohq7lbguh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
