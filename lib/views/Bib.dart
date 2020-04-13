@@ -1,7 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
-class Bib extends StatelessWidget {
+class Bib extends StatefulWidget {
+  Bib({this.naam, this.adres, this.afbeelding, this.open, this.id});
+
+  final String naam, adres, id;
+  final bool open;
+
+  final Future<dynamic> afbeelding;
+
+  @override
+  _BibState createState() => _BibState();
+}
+
+class _BibState extends State<Bib> {
+  String url = '';
+
+  @override
+  void initState() {
+    super.initState();
+
+    getAfbeelding();
+  }
+
+  void getAfbeelding() async {
+    String urlString = await widget.afbeelding;
+    setState(() {
+      url = urlString;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -14,7 +42,7 @@ class Bib extends StatelessWidget {
               image: DecorationImage(
                 fit: BoxFit.cover,
                 image: NetworkImage(
-                  'https://lh3.googleusercontent.com/xDp5M_jMilgWmZBRM6KvGkrH6hBXL7BTm4SFbNGMEKIaVEC0rhjQRX33T0jp6tg0XIGqCfFWqjVzsrI1OG5Rz_loxc2wBvEIC3YeyI3931m4Kat5Ghl3qQOxnIMotmaYIU7y27b_eXQ=w1204-h903-no',
+                  url,
                 ),
               ),
             ),
@@ -24,7 +52,7 @@ class Bib extends StatelessWidget {
               Expanded(
                 child: ListTile(
                   title: Text(
-                    'Floribib',
+                    widget.naam,
                     style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
                   ),
                   subtitle: Text(''),
@@ -32,16 +60,18 @@ class Bib extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Chip(
-                  backgroundColor: Colors.blue,
-                  label: Text("Open"),
-                ),
+                child: widget.open
+                    ? Chip(backgroundColor: Colors.blue, label: Text("Open"))
+                    : Chip(
+                        backgroundColor: Colors.red,
+                        label: Text("Gesloten"),
+                      ),
               )
             ],
           ),
           ListTile(
             leading: Icon(Icons.location_on),
-            title: Text('Floriwijk 3, 2860 Sint-Katelijne-Waver'),
+            title: Text(widget.adres),
           ),
           ButtonBar(
             children: <Widget>[
@@ -68,7 +98,7 @@ class Bib extends StatelessWidget {
                                   padding: const EdgeInsets.all(28.0),
                                   child: QrImage(
                                     backgroundColor: Colors.white,
-                                    data: 'https://buivr.ml',
+                                    data: widget.id,
                                   ),
                                 ),
                               ),

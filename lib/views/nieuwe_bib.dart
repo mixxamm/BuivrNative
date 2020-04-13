@@ -21,6 +21,7 @@ class _NieuweBibState extends State<NieuweBib> {
   int _aantal = 6;
   File _image;
   bool _opslaan = false;
+  bool _open = true;
 
   Future kiesAfbeeldingVanafCamera() async {
     var image = await ImagePicker.pickImage(source: ImageSource.camera);
@@ -170,6 +171,23 @@ class _NieuweBibState extends State<NieuweBib> {
                                 height: 200,
                               ),
                             )),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Text('Start open'),
+                      Center(
+                        child: Switch(
+                          activeColor: Colors.amber,
+                          onChanged: (value) {
+                            setState(() {
+                              _open = value;
+                            });
+                          },
+                          value: _open,
+                        ),
+                      ),
+                    ],
+                  ),
                   Center(
                     child: Padding(
                       padding: const EdgeInsets.symmetric(vertical: 16.0),
@@ -187,6 +205,7 @@ class _NieuweBibState extends State<NieuweBib> {
                                 'beschrijving': _beschrijving,
                                 'adres': _adres,
                                 'capaciteit': _aantal,
+                                'open': _open,
                               }).then((value) => uploadImage(value.documentID)
                                   .then(
                                       (value) => Navigator.of(context).pop()));
